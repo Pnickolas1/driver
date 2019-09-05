@@ -51,8 +51,11 @@ def get_driver_data(data):
 
 def main():
     with open(sys.argv[1], "r") as f:
-        contents = f.read().split('\n')
-    print(get_driver_data(contents))
+        raw_data = f.read().split('\n')
+    # print(get_driver_data(raw_data))
+    x = Driver(raw_data)
+    test = x.raw_data()
+    print(test)
 
 if __name__ == "__main__":
     main()
