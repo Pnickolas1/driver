@@ -1,5 +1,6 @@
 import sys
 from datetime import datetime, timedelta
+from collections import OrderedDict
 
 
 class Driver:
@@ -24,7 +25,7 @@ class Driver:
             minutes += time_difference_in_minutes
         return minutes
 
-    def perform_diagnostics(self, drivers, telemetry):
+    def _perform_diagnostics(self, drivers, telemetry):
         cumulative_miles = []
         driver_meta_data = {}
         for driver in drivers:
@@ -34,9 +35,13 @@ class Driver:
                 miles = self.calculate_miles_driven(driver, telemetry[driver])
                 minutes = self.calculate_minutes_driving(driver, telemetry[driver])
                 driver_meta_data[driver] = {f"miles": miles, "minutes": minutes}
-        return driver_meta_data
+        return self._sort_by_miles(driver_meta_data)
 
-    def raw_data(self):
+    def _sort_by_miles(self, stats):
+        return OrderedDict(sorted(stats.items(), key=lambda i: i[1]['miles'], reverse=True))
+
+
+    def driving_summary(self):
         data = self.data
         drivers = []
         telemetry_data = {}
@@ -49,4 +54,4 @@ class Driver:
                     telemetry_data[split_out[1]] = [split_out[2:]]
                 else:
                     telemetry_data[split_out[1]].append(split_out[2:])
-        print(self.perform_diagnostics(drivers, telemetry_data))
+        return self._perform_diagnostics(drivers, telemetry_data)
