@@ -8,14 +8,14 @@ class Driver:
     def __init__(self, data):
         self.data = data
 
-    def calculate_miles_driven(self, driver, data):
+    def calculate_miles_driven(self, data):
         miles = 0
         for trip in data:
             miles += float(trip[2])
         total_miles = round(miles)
         return total_miles
 
-    def calculate_minutes_driving(self, driver, data):
+    def calculate_minutes_driving(self, data):
         minutes = 0
         for d in data:
             start = datetime.strptime(d[0], '%H:%M')
@@ -26,14 +26,13 @@ class Driver:
         return minutes
 
     def _perform_diagnostics(self, drivers, telemetry):
-        cumulative_miles = []
         driver_meta_data = {}
         for driver in drivers:
             if driver not in telemetry:
                 driver_meta_data[driver] = {'miles': 0, 'minutes': 0}
             else:
-                miles = self.calculate_miles_driven(driver, telemetry[driver])
-                minutes = self.calculate_minutes_driving(driver, telemetry[driver])
+                miles = self.calculate_miles_driven(telemetry[driver])
+                minutes = self.calculate_minutes_driving(telemetry[driver])
                 driver_meta_data[driver] = {f"miles": miles, "minutes": minutes}
         return self._sort_by_miles(driver_meta_data)
 
