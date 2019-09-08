@@ -27,6 +27,6 @@ python3 -m unittest -v tests
 
 ### Design
 Effectively organized data to find all drivers within the dataset and use the driver's firstname as the key in a  driver meta hashmap.
-When iterating through each line of the raw text field, control flow off first word of each line and appending each trip's
-data to the driver within the hashmap as an array or arrays or create a new key and append the data. This breaks down if there are two unique drivers with the same
+When iterating through each line of the raw text, control flow off first word of each line and appending each trip's
+data to the driver within the hashmap as an array of arrays or create a new key and append the data. This breaks down if there are two unique drivers with the same
 firstname, however, my assumption is that each driver's name is a unique hash.
