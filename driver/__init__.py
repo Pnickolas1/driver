@@ -37,9 +37,6 @@ class Driver:
         return self._sort_by_miles(driver_meta_data)
 
     def _sort_by_miles(self, stats):
-        print(stats)
-        dicks = OrderedDict(sorted(stats.items(), key=lambda i: i[1]['miles'], reverse=True))
-        print(dicks)
         return OrderedDict(sorted(stats.items(), key=lambda i: i[1]['miles'], reverse=True))
 
     def _output(self, data):
