@@ -9,9 +9,7 @@
 ### Troubleshooting
 > If errors are immediately thrown, ensure you are running python 3.6. To determine this, you can run the following in the terminal
 ```
-which python
- OR
-which python3
+python3 --version
 ```
 
 ### Run Program

@@ -25,7 +25,6 @@ class Driver:
         return minutes
 
     def _perform_diagnostics(self, drivers, telemetry):
-        print(telemetry)
         driver_meta_data = {}
         for driver in drivers:
             if driver not in telemetry:
@@ -34,7 +33,6 @@ class Driver:
                 miles = self.sum_miles_driven(telemetry[driver])
                 minutes = self.sum_minutes_driven(telemetry[driver])
                 driver_meta_data[driver] = {f"miles": miles, "minutes": minutes}
-        print(driver_meta_data)
         return self._sort_by_miles(driver_meta_data)
 
     def _sort_by_miles(self, stats):
